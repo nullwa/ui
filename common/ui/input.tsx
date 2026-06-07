@@ -1,5 +1,5 @@
 'use client'
-import { type FC, type ReactNode, type ComponentProps, useState, useCallback, useRef } from 'react'
+import { type FC, type ReactNode, type ComponentProps, useState, useRef } from 'react'
 import { tm, cva, type VariantProps } from '@/common/utils/tw-merge'
 
 import { XIcon, SpinnerIcon } from '@phosphor-icons/react'
@@ -27,15 +27,12 @@ const Input: FC<Props> = ({ id, label, required, placeholder, hint, messages, af
   const isControlled = value !== undefined
   const currentValue = isControlled ? value : internalValue
 
-  const handleChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (!isControlled) setInternalValue(e.target.value)
-      onChange?.(e)
-    },
-    [isControlled, onChange],
-  )
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isControlled) setInternalValue(e.target.value)
+    onChange?.(e)
+  }
 
-  const handleClear = useCallback(() => {
+  const handleClear = () => {
     if (!isControlled) setInternalValue('')
     const nativeInput = inputRef.current
     if (nativeInput) {
@@ -44,7 +41,7 @@ const Input: FC<Props> = ({ id, label, required, placeholder, hint, messages, af
     }
     onChange?.({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>)
     inputRef.current?.focus()
-  }, [isControlled, onChange])
+  }
 
   const showClearButton = clearable && !disabled && !loading && String(currentValue).length > 0
 
