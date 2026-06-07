@@ -7,7 +7,7 @@ addons.setConfig({
   theme: create({
     base: 'dark',
     brandTitle: '@nullwa/ui',
-    brandImage: './logo.png',
+    brandImage: './logo.svg',
     brandUrl: 'https://github.com/nullwa/ui',
     appBorderRadius: 2,
     inputBorderRadius: 2,
