@@ -7,7 +7,6 @@ type Props = Omit<ComponentProps<'input'>, 'size'> &
     label?: string
     hint?: string
     required?: boolean
-    /** Renders the label to the left of the radio button */
     labelLeft?: boolean
     badges?: ReactNode[]
   }
@@ -47,7 +46,7 @@ const radioStyles = cva(
   [
     'transition-[border-color,box-shadow]',
     'bg-gray-50/50 dark:bg-gray-900',
-    'border-2 border-gray-200 dark:border-gray-700',
+    'mt-0.5 border-2 border-gray-200 dark:border-gray-700',
     'relative inline-flex items-center justify-center rounded-full shrink-0',
     'has-focus:ring-2',
     'has-checked:border-gray-700 dark:has-checked:border-gray-300',
