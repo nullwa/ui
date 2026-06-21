@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs'
 import { Input } from '@/common/ui/input'
+import { Label } from '@/common/ui/label'
 import { MagnifyingGlass, Envelope, LockSimple, User, CurrencyDollar, At, Globe, Eye } from '@phosphor-icons/react'
 
 const meta = {
@@ -16,7 +17,7 @@ const meta = {
   argTypes: {
     // ── Content ──────────────────────────────────────────────────────────────
     label: {
-      control: { type: 'text' },
+      control: { type: 'text', disable: true },
       description: 'Visible label rendered above the input.',
       table: { category: 'Content' },
     },
@@ -89,6 +90,7 @@ export const Default: Story = {
     placeholder: 'Enter a value…',
     size: 'md',
     radius: 'md',
+    label: <Label label='label' />,
   },
 }
 
@@ -96,14 +98,14 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   args: {
-    label: 'Email address',
+    label: <Label label='Email address' />,
     placeholder: 'you@example.com',
   },
 }
 
 export const Required: Story = {
   args: {
-    label: 'Username',
+    label: <Label label='Username' />,
     placeholder: 'johndoe',
     required: true,
   },
@@ -111,7 +113,7 @@ export const Required: Story = {
 
 export const WithHint: Story = {
   args: {
-    label: 'Password',
+    label: <Label label='Password' />,
     placeholder: '••••••••',
     type: 'password',
     hint: 'Must be at least 8 characters long.',
@@ -120,7 +122,7 @@ export const WithHint: Story = {
 
 export const WithMessages: Story = {
   args: {
-    label: 'Password',
+    label: <Label label='Password' />,
     placeholder: '••••••••',
     type: 'password',
     state: 'error',
@@ -133,7 +135,7 @@ export const WithMessages: Story = {
 export const StateError: Story = {
   name: 'State / Error',
   args: {
-    label: 'Email address',
+    label: <Label label='Email address' state={'error'} />,
     defaultValue: 'not-an-email',
     state: 'error',
     hint: 'Please enter a valid email address.',
@@ -143,7 +145,7 @@ export const StateError: Story = {
 export const StateSuccess: Story = {
   name: 'State / Success',
   args: {
-    label: 'Username',
+    label: <Label label='Username' state={'success'} />,
     defaultValue: 'johndoe',
     state: 'success',
     hint: 'Username is available!',
@@ -153,7 +155,7 @@ export const StateSuccess: Story = {
 export const StateWarning: Story = {
   name: 'State / Warning',
   args: {
-    label: 'Username',
+    label: <Label label='Username' state={'warning'} />,
     defaultValue: 'john',
     state: 'warning',
     hint: 'Short usernames are often taken quickly.',
@@ -166,7 +168,7 @@ export const SizeSmall: Story = {
   name: 'Size / Small',
   args: {
     size: 'sm',
-    label: 'Small',
+    label: <Label label='Small' size='sm' />,
     placeholder: 'Small input…',
   },
 }
@@ -175,7 +177,7 @@ export const SizeMedium: Story = {
   name: 'Size / Medium',
   args: {
     size: 'md',
-    label: 'Medium',
+    label: <Label label='Medium' size='md' />,
     placeholder: 'Medium input…',
   },
 }
@@ -184,7 +186,7 @@ export const SizeLarge: Story = {
   name: 'Size / Large',
   args: {
     size: 'lg',
-    label: 'Large',
+    label: <Label label='Large' size='lg' />,
     placeholder: 'Large input…',
   },
 }
@@ -206,7 +208,7 @@ export const RadiusFull: Story = {
 export const WithAffix: Story = {
   name: 'Slots / Affix',
   args: {
-    label: 'Search',
+    label: <Label label='Search' />,
     placeholder: 'Search anything…',
     affix: <MagnifyingGlass weight='regular' />,
   },
@@ -215,7 +217,7 @@ export const WithAffix: Story = {
 export const WithSuffix: Story = {
   name: 'Slots / Suffix',
   args: {
-    label: 'Website',
+    label: <Label label='Website' />,
     placeholder: 'yoursite',
     suffix: <span>.com</span>,
   },
@@ -224,7 +226,7 @@ export const WithSuffix: Story = {
 export const WithBoth: Story = {
   name: 'Slots / Affix + Suffix',
   args: {
-    label: 'Price',
+    label: <Label label='Price' />,
     placeholder: '0.00',
     type: 'number',
     affix: <CurrencyDollar weight='regular' />,
@@ -251,7 +253,7 @@ export const AffixIcon: Story = {
 
 export const Clearable: Story = {
   args: {
-    label: 'Search',
+    label: <Label label='Search' />,
     defaultValue: 'Remove me',
     clearable: true,
     affix: <MagnifyingGlass weight='regular' />,
@@ -260,7 +262,7 @@ export const Clearable: Story = {
 
 export const Loading: Story = {
   args: {
-    label: 'Checking availability…',
+    label: <Label label='Checking availability…' />,
     defaultValue: 'johndoe',
     loading: true,
   },
@@ -268,7 +270,7 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   args: {
-    label: 'Read-only field',
+    label: <Label label='Read-only field' />,
     defaultValue: 'Cannot edit this',
     disabled: true,
   },
@@ -277,7 +279,7 @@ export const Disabled: Story = {
 export const DisabledWithAffix: Story = {
   name: 'Disabled / With affix',
   args: {
-    label: 'Email',
+    label: <Label label='Email' />,
     defaultValue: 'locked@example.com',
     disabled: true,
     affix: <Envelope weight='regular' />,
@@ -291,10 +293,10 @@ export const SignUpForm: Story = {
   name: 'Composition / Sign-up form',
   render: () => (
     <div className='flex flex-col gap-4 w-80'>
-      <Input label='Full name' placeholder='Jane Doe' required affix={<User weight='regular' />} />
-      <Input label='Email address' placeholder='jane@example.com' type='email' required affix={<Envelope weight='regular' />} state='error' hint='That email is already in use.' />
-      <Input label='Password' placeholder='••••••••' type='password' required affix={<LockSimple weight='regular' />} hint='Minimum 8 characters.' />
-      <Input label='Website' placeholder='yoursite' affix={<Globe weight='regular' />} suffix={<span>.com</span>} />
+      <Input label={<Label label='Full name' />} placeholder='Jane Doe' required affix={<User weight='regular' />} />
+      <Input label={<Label label='Email address' />} placeholder='jane@example.com' type='email' required affix={<Envelope weight='regular' />} state='error' hint='That email is already in use.' />
+      <Input label={<Label label='Password' />} placeholder='••••••••' type='password' required affix={<LockSimple weight='regular' />} hint='Minimum 8 characters.' />
+      <Input label={<Label label='Website' />} placeholder='yoursite' affix={<Globe weight='regular' />} suffix={<span>.com</span>} />
     </div>
   ),
 }
@@ -316,10 +318,10 @@ export const StateComparison: Story = {
   name: 'Composition / State comparison',
   render: () => (
     <div className='flex flex-col gap-3 w-72'>
-      <Input label='Default' placeholder='Neutral…' />
-      <Input label='Error' defaultValue='bad-input' state='error' hint='Something went wrong.' />
-      <Input label='Success' defaultValue='valid-input' state='success' hint='Looks great!' />
-      <Input label='Warning' defaultValue='risky-input' state='warning' hint='Proceed with caution.' />
+      <Input label={<Label label='Default' />} placeholder='gray…' />
+      <Input label={<Label label='Error' />} defaultValue='bad-input' state='error' hint='Something went wrong.' />
+      <Input label={<Label label='Success' />} defaultValue='valid-input' state='success' hint='Looks great!' />
+      <Input label={<Label label='Warning' />} defaultValue='risky-input' state='warning' hint='Proceed with caution.' />
     </div>
   ),
 }

@@ -49,11 +49,11 @@ const styles = cva(
     },
     compoundVariants: [
       // ─── state: default ───────────────────────────────────────────────────────
-      { state: 'default', variant: 'solid', class: 'bg-neutral-700 hover:bg-neutral-800 border-neutral-950 text-white shadow-skeuomorphic' },
-      { state: 'default', variant: 'filled', class: 'bg-neutral-50 hover:bg-neutral-100 border-neutral-300 text-neutral-800 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:border-neutral-600 dark:text-neutral-100' },
-      { state: 'default', variant: 'outline', class: 'bg-white hover:bg-neutral-100 border-neutral-300 text-neutral-800 dark:bg-transparent dark:hover:bg-neutral-800 dark:border-neutral-600 dark:text-neutral-200' },
-      { state: 'default', variant: 'ghost', class: 'bg-transparent hover:bg-neutral-100 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 border-transparent' },
-      { state: 'default', variant: 'link', class: 'bg-transparent text-neutral-800 dark:text-neutral-200 hover:text-neutral-950 dark:hover:text-white border-transparent' },
+      { state: 'default', variant: 'solid', class: 'bg-gray-700 hover:bg-gray-800 border-gray-950 text-white shadow-skeuomorphic' },
+      { state: 'default', variant: 'filled', class: 'bg-gray-50 hover:bg-gray-100 border-gray-300 text-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-gray-600 dark:text-gray-100' },
+      { state: 'default', variant: 'outline', class: 'bg-white hover:bg-gray-100 border-gray-300 text-gray-800 dark:bg-transparent dark:hover:bg-gray-800 dark:border-gray-600 dark:text-gray-200' },
+      { state: 'default', variant: 'ghost', class: 'bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-800 dark:text-gray-200 border-transparent' },
+      { state: 'default', variant: 'link', class: 'bg-transparent text-gray-800 dark:text-gray-200 hover:text-gray-950 dark:hover:text-white border-transparent' },
 
       // ─── state: brand ─────────────────────────────────────────────────────────
       { state: 'brand', variant: 'solid', class: 'bg-brand-600 hover:bg-brand-700 border-brand-800 text-white shadow-skeuomorphic' },

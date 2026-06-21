@@ -52,7 +52,7 @@ const Breadcrumb: FC<Props> = ({ items, separator = '/', ellipsis = 0, size = 'm
                     onClick={() => setExpanded((prev) => !prev)}
                     aria-label={expanded ? 'Collapse breadcrumbs' : 'Show hidden breadcrumbs'}
                     aria-expanded={expanded}
-                    className={tm(itemStyles({ size }), 'cursor-pointer hover:text-neutral-900 dark:hover:text-neutral-100 px-0.5 rounded')}>
+                    className={tm(itemStyles({ size }), 'cursor-pointer hover:text-gray-900 dark:hover:text-gray-100 px-0.5 rounded')}>
                     &hellip;
                   </button>
                 ) : item.isDisabled ? (
@@ -61,7 +61,7 @@ const Breadcrumb: FC<Props> = ({ items, separator = '/', ellipsis = 0, size = 'm
                     {item.title}
                   </Link>
                 ) : isLast ? (
-                  <span className={tm(itemStyles({ size }), 'text-neutral-900 dark:text-neutral-100 cursor-default pointer-events-none')} aria-current='page'>
+                  <span className={tm(itemStyles({ size }), 'text-gray-900 dark:text-gray-100 cursor-default pointer-events-none')} aria-current='page'>
                     {item.icon && <span className='shrink-0'>{item.icon}</span>}
                     {item.title}
                   </span>
@@ -99,8 +99,8 @@ const styles = cva(['border'], {
   variants: {
     variant: {
       default: 'border-transparent',
-      filled: 'bg-neutral-100 border-neutral-300 dark:bg-neutral-900 dark:border-neutral-700',
-      outline: 'border-neutral-300 dark:border-neutral-600',
+      filled: 'bg-gray-100 border-gray-300 dark:bg-gray-900 dark:border-gray-700',
+      outline: 'border-gray-300 dark:border-gray-600',
     },
     size: {
       sm: 'h-7 px-1.5',
@@ -122,7 +122,7 @@ const styles = cva(['border'], {
   },
 })
 
-const itemStyles = cva(['inline-flex items-center gap-1.5', 'cursor-pointer', 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors'], {
+const itemStyles = cva(['inline-flex items-center gap-1.5', 'cursor-pointer', 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors'], {
   variants: {
     size: {
       sm: 'text-xs',
@@ -135,7 +135,7 @@ const itemStyles = cva(['inline-flex items-center gap-1.5', 'cursor-pointer', 't
   },
 })
 
-const separatorStyles = cva(['inline-flex items-center', 'text-neutral-400 dark:text-neutral-600 select-none pointer-events-none'], {
+const separatorStyles = cva(['inline-flex items-center', 'text-gray-400 dark:text-gray-600 select-none pointer-events-none'], {
   variants: {
     size: {
       sm: 'text-xs',

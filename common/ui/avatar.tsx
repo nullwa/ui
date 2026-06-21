@@ -18,7 +18,7 @@ const Avatar: FC<Props> = ({ src, fallback, size = 'sm', radius = 'rounded', cla
         // eslint-disable-next-line @next/next/no-img-element
         <img data-slot='avatar-image' src={src} alt={alt ?? fallback} onError={() => setFailed(true)} className='size-full object-cover' {...rest} />
       ) : (
-        <div data-slot='avatar-fallback' className='bg-neutral-200 dark:bg-neutral-700 text-gray-950 dark:text-gray-300 text-secondary flex size-full items-center justify-center text-sm'>
+        <div data-slot='avatar-fallback' className='bg-gray-200 dark:bg-gray-700 text-gray-950 dark:text-gray-300 text-secondary flex size-full items-center justify-center text-sm'>
           {fallback}
         </div>
       )}

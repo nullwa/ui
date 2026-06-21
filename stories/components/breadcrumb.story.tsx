@@ -319,7 +319,7 @@ export const DeepNavigation: Story = {
 export const AdminPanel: Story = {
   name: 'Composition / Admin panel',
   render: () => (
-    <div className='flex items-center justify-between rounded-lg border border-neutral-200 bg-white px-4 py-3 dark:border-neutral-700 dark:bg-neutral-900'>
+    <div className='flex items-center justify-between rounded-lg border border-gray-200 bg-white px-4 py-3 dark:border-gray-700 dark:bg-gray-900'>
       <Breadcrumb
         variant='default'
         separator='/'

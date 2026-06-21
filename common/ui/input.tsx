@@ -6,7 +6,7 @@ import { XIcon, SpinnerIcon } from '@phosphor-icons/react'
 
 type Props = Omit<ComponentProps<'input'>, 'size'> &
   VariantProps<typeof styles> & {
-    label?: string
+    label?: ReactNode
     hint?: string
     messages?: string[]
     affix?: ReactNode
@@ -15,7 +15,7 @@ type Props = Omit<ComponentProps<'input'>, 'size'> &
     clearable?: boolean
   }
 
-const Input: FC<Props> = ({ id, label, required, placeholder, hint, messages, affix, suffix, clearable, loading, disabled, value, defaultValue, onChange, state, size, radius, className, ...rest }) => {
+const Input: FC<Props> = ({ id, label, placeholder, hint, messages, affix, suffix, clearable, loading, disabled, value, defaultValue, onChange, state, size, radius, className, ...rest }) => {
   // Separate left/right addon detection for correct padding logic:
   // - hasLeftAddon  → affix is present, remove left input padding (addon owns it)
   // - hasRightAddon → suffix, clearable, or loading is present, remove right input padding
@@ -48,16 +48,7 @@ const Input: FC<Props> = ({ id, label, required, placeholder, hint, messages, af
   return (
     <div className='flex flex-col gap-1'>
       {/* Label */}
-      {label && (
-        <label htmlFor={id} className={tm(labelStyles({ state, size }))}>
-          {label}
-          {required && (
-            <span aria-hidden='true' className='text-red-500'>
-              *
-            </span>
-          )}
-        </label>
-      )}
+      {label && label}
 
       {/* Input shell */}
       <div data-addon={hasLeftAddon || hasRightAddon} data-disabled={disabled} data-loading={loading} className={tm(styles({ state, size, radius }), className)}>
@@ -118,20 +109,26 @@ const Input: FC<Props> = ({ id, label, required, placeholder, hint, messages, af
 const styles = cva(
   [
     'group/input flex items-center overflow-hidden',
-    'border-2 outline-none bg-white dark:bg-neutral-900',
+    'border-2 outline-none bg-gray-50/50 dark:bg-gray-900',
     'transition-[border-color,box-shadow] duration-150',
     'focus-within:ring-2 focus-within:ring-offset-0',
-    'data-[disabled=true]:bg-neutral-50 dark:data-[disabled=true]:bg-neutral-800/60',
+    'data-[disabled=true]:bg-gray-50 dark:data-[disabled=true]:bg-gray-800/60',
     'data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-60',
   ],
   {
     variants: {
       state: {
         default: [
-          'border-neutral-200 dark:border-neutral-700',
-          'hover:border-neutral-300 dark:hover:border-neutral-600',
-          'focus-within:border-neutral-400 dark:focus-within:border-neutral-500',
-          'focus-within:ring-neutral-400/20 dark:focus-within:ring-neutral-500/20',
+          'border-gray-200 dark:border-gray-700',
+          'hover:border-gray-300 dark:hover:border-gray-600',
+          'focus-within:border-gray-400 dark:focus-within:border-gray-500',
+          'focus-within:ring-gray-400/20 dark:focus-within:ring-gray-500/20',
+        ],
+        brand: [
+          'border-brand-300 dark:border-brand-600/70',
+          'hover:border-brand-400 dark:hover:border-brand-500',
+          'focus-within:border-brand-500 dark:focus-within:border-brand-400',
+          'focus-within:ring-brand-500/20 dark:focus-within:ring-brand-400/20',
         ],
         error: ['border-red-300 dark:border-red-600/70', 'hover:border-red-400 dark:hover:border-red-500', 'focus-within:border-red-500 dark:focus-within:border-red-400', 'focus-within:ring-red-500/20 dark:focus-within:ring-red-400/20'],
         success: [
@@ -145,6 +142,12 @@ const styles = cva(
           'hover:border-amber-400 dark:hover:border-amber-500',
           'focus-within:border-amber-600 dark:focus-within:border-amber-400',
           'focus-within:ring-amber-500/20 dark:focus-within:ring-amber-400/20',
+        ],
+        info: [
+          'border-violet-300 dark:border-violet-600/70',
+          'hover:border-violet-400 dark:hover:border-violet-500',
+          'focus-within:border-violet-500 dark:focus-within:border-violet-400',
+          'focus-within:ring-violet-500/20 dark:focus-within:ring-violet-400/20',
         ],
       },
       size: {
@@ -172,9 +175,9 @@ const addonStyles = cva(
   [
     'flex items-center justify-center h-full shrink-0',
     'pointer-events-none select-none',
-    'text-neutral-400 dark:text-neutral-500',
+    'text-gray-400 dark:text-gray-500',
     'transition-colors duration-150',
-    'group-focus-within/input:text-neutral-500 dark:group-focus-within/input:text-neutral-400',
+    'group-focus-within/input:text-gray-500 dark:group-focus-within/input:text-gray-400',
   ],
   {
     variants: {
@@ -206,8 +209,8 @@ const edgePaddingStyles = cva('shrink-0', {
 const inputStyles = cva(
   [
     'flex-1 h-full min-w-0 bg-transparent outline-none border-none ring-0 ring-offset-0',
-    'text-neutral-900 dark:text-neutral-50',
-    'placeholder:text-neutral-400/70 dark:placeholder:text-neutral-500',
+    'text-gray-900 dark:text-gray-50',
+    'placeholder:text-gray-400/70 dark:placeholder:text-gray-500',
     'disabled:cursor-not-allowed',
     'transition-colors duration-150',
   ],
@@ -226,9 +229,9 @@ const inputStyles = cva(
 const clearButtonStyles = cva(
   [
     'flex items-center justify-center rounded-full cursor-pointer shrink-0',
-    'text-neutral-400 dark:text-neutral-500',
-    'hover:text-neutral-600 dark:hover:text-neutral-300',
-    'hover:bg-neutral-100 dark:hover:bg-neutral-800',
+    'text-gray-400 dark:text-gray-500',
+    'hover:text-gray-600 dark:hover:text-gray-300',
+    'hover:bg-gray-100 dark:hover:bg-gray-800',
     'active:scale-90',
     'transition-all duration-100',
   ],
@@ -244,7 +247,7 @@ const clearButtonStyles = cva(
   },
 )
 
-const spinnerStyles = cva('animate-spin text-neutral-400 dark:text-neutral-500', {
+const spinnerStyles = cva('animate-spin text-gray-400 dark:text-gray-500', {
   variants: {
     size: {
       sm: 'size-3.5',
@@ -255,24 +258,7 @@ const spinnerStyles = cva('animate-spin text-neutral-400 dark:text-neutral-500',
   defaultVariants: { size: 'md' },
 })
 
-const labelStyles = cva('flex items-center gap-1 leading-none first-letter:uppercase', {
-  variants: {
-    state: {
-      default: 'text-neutral-700 dark:text-neutral-300',
-      error: 'text-red-600 dark:text-red-400',
-      success: 'text-emerald-600 dark:text-emerald-400',
-      warning: 'text-amber-600 dark:text-amber-400',
-    },
-    size: {
-      sm: 'text-xs',
-      md: 'text-sm',
-      lg: 'text-sm',
-    },
-  },
-  defaultVariants: { state: 'default', size: 'md' },
-})
-
-const hintStyles = cva('leading-snug text-neutral-500 first-letter:uppercase', {
+const hintStyles = cva('leading-snug text-gray-500 first-letter:uppercase', {
   variants: {
     size: {
       sm: 'text-[10px]',
@@ -286,10 +272,12 @@ const hintStyles = cva('leading-snug text-neutral-500 first-letter:uppercase', {
 const messageStyles = cva('leading-snug', {
   variants: {
     state: {
-      default: 'text-neutral-400 dark:text-neutral-500',
+      default: 'text-gray-400 dark:text-gray-500',
+      brand: 'text-brand-600 dark:text-brand-400',
       error: 'text-red-600 dark:text-red-400',
       success: 'text-emerald-600 dark:text-emerald-400',
       warning: 'text-amber-600 dark:text-amber-400',
+      info: 'text-violet-600 dark:text-violet-400',
     },
     size: {
       sm: 'text-[10px]',

@@ -98,7 +98,7 @@ const baseItems: AccordionItem[] = [
     content: (
       <div className='space-y-3'>
         <p>Every component is designed to support keyboard navigation, screen readers, and semantic HTML.</p>
-        <div className='rounded-lg border border-neutral-200 p-4 dark:border-neutral-800'>
+        <div className='rounded-lg border border-gray-200 p-4 dark:border-gray-800'>
           <strong>Accessibility Features</strong>
           <ul className='mt-2 list-disc pl-5'>
             <li>Focus management</li>
@@ -117,17 +117,17 @@ const baseItems: AccordionItem[] = [
       <div className='space-y-4'>
         <p>Themes are powered by CSS variables, allowing runtime updates and instant appearance changes.</p>
         <div className='grid grid-cols-3 gap-3'>
-          <div className='rounded-md border border-neutral-200 p-3 dark:border-neutral-800'>
+          <div className='rounded-md border border-gray-200 p-3 dark:border-gray-800'>
             <h4 className='font-medium'>Light</h4>
-            <p className='text-sm text-neutral-500'>Clean and minimal.</p>
+            <p className='text-sm text-gray-500'>Clean and minimal.</p>
           </div>
-          <div className='rounded-md border border-neutral-200 p-3 dark:border-neutral-800'>
+          <div className='rounded-md border border-gray-200 p-3 dark:border-gray-800'>
             <h4 className='font-medium'>Dark</h4>
-            <p className='text-sm text-neutral-500'>Optimized for low-light environments.</p>
+            <p className='text-sm text-gray-500'>Optimized for low-light environments.</p>
           </div>
-          <div className='rounded-md border border-neutral-200 p-3 dark:border-neutral-800'>
+          <div className='rounded-md border border-gray-200 p-3 dark:border-gray-800'>
             <h4 className='font-medium'>Custom</h4>
-            <p className='text-sm text-neutral-500'>Fully brandable themes.</p>
+            <p className='text-sm text-gray-500'>Fully brandable themes.</p>
           </div>
         </div>
       </div>
@@ -145,7 +145,7 @@ const baseItems: AccordionItem[] = [
           <li>Accessibility auditing</li>
           <li>Cross-browser verification</li>
         </ol>
-        <blockquote className='border-l-2 border-neutral-300 pl-4 italic dark:border-neutral-700'>A component is only complete when it is accessible, documented, and tested.</blockquote>
+        <blockquote className='border-l-2 border-gray-300 pl-4 italic dark:border-gray-700'>A component is only complete when it is accessible, documented, and tested.</blockquote>
       </div>
     ),
   },
@@ -333,7 +333,7 @@ export const CustomToggler: Story = {
   name: 'Slots / Custom toggler',
   args: {
     items: simpleItems,
-    toggler: <span className='text-xs font-mono text-neutral-400 group-data-open/item:hidden'>show</span>,
+    toggler: <span className='text-xs font-mono text-gray-400 group-data-open/item:hidden'>show</span>,
   },
 }
 
@@ -384,11 +384,11 @@ export const SettingsPanel: Story = {
         content: (
           <div className='space-y-2 text-sm'>
             <div className='flex items-center justify-between'>
-              <span className='text-neutral-500'>Display name</span>
+              <span className='text-gray-500'>Display name</span>
               <span className='font-medium'>Jordan Lee</span>
             </div>
             <div className='flex items-center justify-between'>
-              <span className='text-neutral-500'>Email</span>
+              <span className='text-gray-500'>Email</span>
               <span className='font-medium'>jordan@example.com</span>
             </div>
           </div>
@@ -400,8 +400,8 @@ export const SettingsPanel: Story = {
         description: 'Manage authentication tokens.',
         content: (
           <div className='space-y-2 text-sm'>
-            <div className='flex items-center justify-between rounded-md bg-neutral-100 px-3 py-2 font-mono dark:bg-neutral-800'>
-              <span className='truncate text-neutral-500'>sk_live_••••••••••••3f9a</span>
+            <div className='flex items-center justify-between rounded-md bg-gray-100 px-3 py-2 font-mono dark:bg-gray-800'>
+              <span className='truncate text-gray-500'>sk_live_••••••••••••3f9a</span>
               <button type='button' className='ml-3 shrink-0 text-xs font-medium text-blue-500 hover:underline'>
                 Reveal
               </button>
@@ -416,7 +416,7 @@ export const SettingsPanel: Story = {
         content: (
           <div className='flex gap-2 text-sm'>
             {['System', 'Light', 'Dark'].map((t) => (
-              <button key={t} type='button' className='rounded-md border border-neutral-200 px-3 py-1.5 hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800'>
+              <button key={t} type='button' className='rounded-md border border-gray-200 px-3 py-1.5 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-800'>
                 {t}
               </button>
             ))}
