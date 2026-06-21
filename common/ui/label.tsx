@@ -9,9 +9,9 @@ type Props = ComponentProps<'label'> &
     required?: boolean
   }
 
-const Label: FC<Props> = ({ id, label, hint, required, state, size, ...rest }) => {
+const Label: FC<Props> = ({ label, hint, required, state, size, ...rest }) => {
   return (
-    <label htmlFor={id} {...rest}>
+    <label {...rest}>
       <span className={tm(labelStyles({ state, size }))}>
         {label}
         {required && (

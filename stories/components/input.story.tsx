@@ -98,7 +98,8 @@ export const Default: Story = {
 
 export const WithLabel: Story = {
   args: {
-    label: <Label label='Email address' />,
+    id: 'email',
+    label: <Label htmlFor='email' label='Email address' />,
     placeholder: 'you@example.com',
   },
 }
