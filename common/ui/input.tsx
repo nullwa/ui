@@ -109,7 +109,7 @@ const Input: FC<Props> = ({ id, label, placeholder, hint, messages, affix, suffi
 const styles = cva(
   [
     'group/input flex items-center overflow-hidden',
-    'border-2 outline-none bg-gray-50/50 dark:bg-gray-900',
+    'border-2 outline-none bg-gray-50/75 dark:bg-gray-900',
     'transition-[border-color,box-shadow] duration-150',
     'focus-within:ring-2 focus-within:ring-offset-0',
     'data-[disabled=true]:bg-gray-50 dark:data-[disabled=true]:bg-gray-800/60',
