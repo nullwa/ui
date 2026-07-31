@@ -25,7 +25,3 @@
 .squircle {
   corner-shape: squircle;
 }
-
-.debugger {
-  border: 1px dashed red !important;
-}
