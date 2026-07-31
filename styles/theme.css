@@ -81,6 +81,25 @@
   --color-background-secondary: oklch(0.9398 0.0002 285.0452);
   --color-background-tertiary: oklch(0.9094 0.0004 285.5032);
   --color-background-inverse: var(--color-eclipse);
+  /* surface */
+  --color-surface: var(--color-white);
+  --color-surface-secondary: oklch(0.9524 0.0013 286.3678);
+  --color-surface-tertiary: oklch(0.9373 0.0013 286.3706);
+  /* seperator */
+  --color-seperator: oklch(0.92 0.004 286.3187);
+  --color-seperator-secondary: oklch(0.8815 0.0009 285.7121);
+  --color-seperator-tertiary: oklch(0.85 0.0011 285.7551);
+  /* others */
+  --color-border: oklch(0.9 0.004 286.3198);
+  --color-backdrop: oklch(0 0 0 / 0.5);
+  --color-overlay: oklch(1 0 129.6259);
+  --color-segment: var(--color-white);
+  /* form-field */
+  --color-field-background: var(--color-white);
+  --color-field-hover: oklch(0.921 0.0006 285.6078);
+  --color-field-focus: oklch(1 0 129.6259);
+  --color-field-placeholder: var(--color-foreground-muted);
+  --color-field-foreground: var(--color-foreground-primary);
   /* #endregion */
 }
 
@@ -141,6 +160,25 @@
     --color-background-secondary: oklch(0.9398 0.0002 285.0452);
     --color-background-tertiary: oklch(0.9094 0.0004 285.5032);
     --color-background-inverse: var(--color-eclipse);
+    /* surface */
+    --color-surface: var(--color-white);
+    --color-surface-secondary: oklch(0.9524 0.0013 286.3678);
+    --color-surface-tertiary: oklch(0.9373 0.0013 286.3706);
+    /* seperator */
+    --color-seperator: oklch(0.92 0.004 286.3187);
+    --color-seperator-secondary: oklch(0.8815 0.0009 285.7121);
+    --color-seperator-tertiary: oklch(0.85 0.0011 285.7551);
+    /* others */
+    --color-border: oklch(0.9 0.004 286.3198);
+    --color-backdrop: oklch(0 0 0 / 0.5);
+    --color-overlay: oklch(1 0 129.6259);
+    --color-segment: var(--color-white);
+    /* form-field */
+    --color-field-background: var(--color-white);
+    --color-field-hover: oklch(0.921 0.0006 285.6078);
+    --color-field-focus: oklch(1 0 129.6259);
+    --color-field-placeholder: var(--color-foreground-muted);
+    --color-field-foreground: var(--color-foreground-primary);
   }
   /* ------------------------------------------------- */
   /*              @nullwa/ui - dark theme              */
@@ -197,5 +235,24 @@
     --color-background-secondary: oklch(0.1548 0.0048 285.8159);
     --color-background-tertiary: oklch(0.1897 0.0046 285.8142);
     --color-background-inverse: var(--color-snow);
+    /* surface */
+    --color-surface: oklch(0.2103 0.0059 285.8898);
+    --color-surface-secondary: oklch(0.257 0.0037 286.1407);
+    --color-surface-tertiary: oklch(0.2721 0.0024 247.9095);
+    /* seperator */
+    --color-seperator: oklch(0.25 0.006 286.0328);
+    --color-seperator-secondary: oklch(0.3274 0.005 285.8774);
+    --color-seperator-tertiary: oklch(0.3587 0.0048 285.8756);
+    /* others */
+    --color-border: oklch(0.28 0.006 286.0336);
+    --color-backdrop: oklch(0 0 0 / 0.6);
+    --color-overlay: oklch(0.2103 0.0059 285.8898);
+    --color-segment: oklch(0.3964 0.01 285.93);
+    /* form-field */
+    --color-field-background: var(--color-black);
+    --color-field-hover: oklch(0.2884 0.0053 285.8793);
+    --color-field-focus: oklch(0.2103 0.0059 285.8898);
+    --color-field-placeholder: var(--color-foreground-muted);
+    --color-field-foreground: var(--color-foreground-primary);
   }
 }

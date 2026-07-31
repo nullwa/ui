@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs/blocks'
+import { Meta, Source } from '@storybook/addon-docs/blocks'
 import { GearSixIcon } from '@phosphor-icons/react'
 
 <Meta title='Colors' />
@@ -9,7 +9,29 @@ import { GearSixIcon } from '@phosphor-icons/react'
 Most colors in the system are derived automatically from a limited number of base values. This allows HeroUI to maintain consistent contrast, hierarchy, and theming behavior while keeping the system easy to reason about and modify.
 Colors should communicate purpose and state first. Visual variation comes from scale, emphasis, and context.
 
-<div className='py-10' />
+<div className='py-5' />
+
+### How to use
+
+The complete theme definition lives in [`theme.css`](./theme.css). Once imported, the theme automatically switches between light and dark mode based on the `dark` class or `data-theme="dark"` attribute on a parent element (usually `<html>` or `<body>`).
+
+<Source
+  language='css'
+  dark
+  code={`@import 'tailwindcss';
+@import './theme.css';`}
+/>
+
+### Primitive
+
+Primitive colors are mode agnostic values used as foundations for semantic color tokens. They do not change between light and dark themes.
+
+<div className='grid grid-cols-4 gap-4 capitalize! pt-4 pb-10'>
+  <div className='rounded-xs p-2 bg-white border border-border'>white</div>
+  <div className='rounded-xs p-2 bg-black text-snow!'>black</div>
+  <div className='rounded-xs p-2 bg-snow border border-border '>snow</div>
+  <div className='rounded-xs p-2 bg-eclipse text-snow!'>eclipse</div>
+</div>
 
 ### Default (neutrals)
 
@@ -346,6 +368,158 @@ Info colors communicate neutral informational states, guidance, and non-critical
       <p className='p-2 text-info-alt-foreground!'>color alternative</p>
       <p className='p-2 bg-info-alt-hover text-info-alt-foreground!'>hover</p>
       <p className='p-2 bg-info-alt-foreground text-info-foreground!'>foreground</p>
+    </div>
+  </div>
+</div>
+
+### Form Field
+
+Form field colors are specialized tokens used for inputs, controls, and interactive fields. They account for multiple states such as default, focus, and hover. Isolating them ensures form elements have a distinct visual language from buttons and the rest of the UI.
+
+<div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
+  <div className='grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>form</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>light</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-field-background border border-border'>
+      <p className='p-2 text-field-foreground!'>BG</p>
+      <p className='p-2 bg-field-hover text-default-foreground!'>hover</p>
+      <p className='p-2 bg-field-focus text-default-foreground!'>focus</p>
+      <p className='p-2 bg-field-placeholder text-default-foreground!'>placeholder</p>
+      <p className='p-2 bg-field-foreground text-snow!'>foreground</p>
+    </div>
+  </div>
+  <div className='dark-mode grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>form</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>dark</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-field-background border border-border'>
+      <p className='p-2 text-field-foreground!'>BG</p>
+      <p className='p-2 bg-field-hover text-default-foreground!'>hover</p>
+      <p className='p-2 bg-field-focus text-default-foreground!'>focus</p>
+      <p className='p-2 bg-field-placeholder text-default-foreground!'>placeholder</p>
+      <p className='p-2 bg-field-foreground text-eclipse!'>foreground</p>
+    </div>
+  </div>
+</div>
+
+### Surface
+
+Surface colors sit on top of backgrounds and are used for containers such as cards, panels, modals, and dropdown. Surfaces help create visual separation and hierarchy through elevation, contrast, and layering rather than strong color shifts.
+
+<div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
+  <div className='grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>color</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>light</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-black'>
+      <p className='p-2 text-snow!'>color primary</p>
+      <p className='p-2 bg-surface text-default-foreground!'>surface</p>
+      <p className='p-2 bg-surface-secondary text-default-foreground!'>secondary</p>
+      <p className='p-2 bg-surface-tertiary text-default-foreground!'>tertiary</p>
+    </div>
+  </div>
+  <div className='dark-mode grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>color</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>dark</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-gray-200'>
+      <p className='p-2 text-eclipse!'>color primary</p>
+      <p className='p-2 bg-surface text-default-foreground!'>surface</p>
+      <p className='p-2 bg-surface-secondary text-default-foreground!'>secondary</p>
+      <p className='p-2 bg-surface-tertiary text-default-foreground!'>tertiary</p>
+    </div>
+  </div>
+</div>
+
+### Seperator
+
+Seperator colors are used for dividing lines, hairlines, and subtle boundaries between sections or list items. They're intentionally low-contrast so they organize content without competing with it.
+
+<div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
+  <div className='grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>color</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>light</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-black'>
+      <p className='p-2 text-snow!'>color primary</p>
+      <p className='p-2 bg-seperator text-default-foreground!'>seperator</p>
+      <p className='p-2 bg-seperator-secondary text-default-foreground!'>secondary</p>
+      <p className='p-2 bg-seperator-tertiary text-default-foreground!'>tertiary</p>
+    </div>
+  </div>
+  <div className='dark-mode grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>color</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>dark</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-gray-200'>
+      <p className='p-2 text-eclipse!'>color primary</p>
+      <p className='p-2 bg-seperator text-default-foreground!'>seperator</p>
+      <p className='p-2 bg-seperator-secondary text-default-foreground!'>secondary</p>
+      <p className='p-2 bg-seperator-tertiary text-default-foreground!'>tertiary</p>
+    </div>
+  </div>
+</div>
+
+### Other
+
+Other colors serve specific utility roles across the interface. They exist to structure content and guide the eye without adding noise.
+
+<div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
+  <div className='grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>color</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>light</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-background-main'>
+      <p className='p-2 text-eclipse!'>color primary</p>
+      <p className='p-2 bg-border text-default-foreground!'>border</p>
+      <p className='p-2 bg-backdrop text-snow!'>backdrop</p>
+      <p className='p-2 bg-overlay text-eclipse!'>overlay</p>
+      <p className='p-2 bg-segment text-eclipse!'>segment</p>
+    </div>
+  </div>
+  <div className='dark-mode grid grid-cols-2 gap-2'>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>color</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>dark</p>
+      </div>
+    </div>
+    <div className='col-span-2 px-2 pb-4 bg-background-main'>
+      <p className='p-2 text-snow!'>color primary</p>
+      <p className='p-2 bg-border text-default-foreground!'>border</p>
+      <p className='p-2 bg-backdrop text-snow!'>backdrop</p>
+      <p className='p-2 bg-overlay text-snow!'>overlay</p>
+      <p className='p-2 bg-segment text-snow!'>segment</p>
     </div>
   </div>
 </div>
