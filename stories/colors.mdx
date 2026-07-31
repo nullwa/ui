@@ -1,4 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks'
+import { GearSixIcon } from '@phosphor-icons/react'
 
 <Meta title='Colors' />
 
@@ -17,7 +18,13 @@ brands should be used intentionally and sparingly. Overuse reduces its impact an
 
 <div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
   <div className='grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-brand text-brand-foreground!'>accent</p>
+    <div className='rounded-xs p-2 col-span-2 bg-brand flex items-center justify-between'>
+      <p className='text-brand-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-brand-foreground!' />
+        <p className='text-xs text-brand-foreground!'>light</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-brand'>
       <p className='p-2 text-brand-foreground!'>accent primary</p>
       <p className='p-2 bg-brand-hover text-brand-foreground!'>hover</p>
@@ -30,7 +37,13 @@ brands should be used intentionally and sparingly. Overuse reduces its impact an
     </div>
   </div>
   <div className='dark-mode grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-brand text-brand-foreground!'>accent (dark)</p>
+    <div className='rounded-xs p-2 col-span-2 bg-brand flex items-center justify-between'>
+      <p className='text-brand-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-brand-foreground!' />
+        <p className='text-xs text-brand-foreground!'>dark</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-brand'>
       <p className='p-2 text-brand-foreground!'>accent primary</p>
       <p className='p-2 bg-brand-hover text-brand-foreground!'>hover</p>
@@ -50,7 +63,13 @@ Default colors form the neutral backbone of the system. They are used for most n
 
 <div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
   <div className='grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-default text-default-foreground!'>accent </p>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>light</p>
+      </div>
+    </div>
     <div className='col-span-2 px-2 pb-4 bg-default'>
       <p className='p-2 text-default-foreground!'>accent primary</p>
       <p className='p-2 bg-default-hover text-default-foreground!'>hover</p>
@@ -58,7 +77,13 @@ Default colors form the neutral backbone of the system. They are used for most n
     </div>
   </div>
   <div className='dark-mode grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-default text-default-foreground!'>accent (dark)</p>
+    <div className='rounded-xs p-2 col-span-2 bg-default flex items-center justify-between'>
+      <p className='text-default-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-default-foreground!' />
+        <p className='text-xs text-default-foreground!'>dark</p>
+      </div>
+    </div>
     <div className='col-span-2 px-2 pb-4 bg-default'>
       <p className='p-2 text-default-foreground!'>accent primary</p>
       <p className='p-2 bg-default-hover text-default-foreground!'>hover</p>
@@ -73,7 +98,13 @@ Success colors communicate positive outcomes, confirmations, and completed state
 
 <div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
   <div className='grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-success text-success-foreground!'>accent</p>
+    <div className='rounded-xs p-2 col-span-2 bg-success flex items-center justify-between'>
+      <p className='text-success-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-success-foreground!' />
+        <p className='text-xs text-success-foreground!'>light</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-success'>
       <p className='p-2 text-success-foreground!'>accent primary</p>
       <p className='p-2 bg-success-hover text-success-foreground!'>hover</p>
@@ -86,7 +117,13 @@ Success colors communicate positive outcomes, confirmations, and completed state
     </div>
   </div>
   <div className='dark-mode grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-success text-success-foreground!'>accent (dark)</p>
+    <div className='rounded-xs p-2 col-span-2 bg-success flex items-center justify-between'>
+      <p className='text-success-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-success-foreground!' />
+        <p className='text-xs text-success-foreground!'>dark</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-success'>
       <p className='p-2 text-success-foreground!'>accent primary</p>
       <p className='p-2 bg-success-hover text-success-foreground!'>hover</p>
@@ -106,7 +143,13 @@ Warning colors indicate caution, risk, or actions that require attention but are
 
 <div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
   <div className='grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-warning text-warning-foreground!'>accent</p>
+    <div className='rounded-xs p-2 col-span-2 bg-warning flex items-center justify-between'>
+      <p className='text-warning-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-warning-foreground!' />
+        <p className='text-xs text-warning-foreground!'>light</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-warning'>
       <p className='p-2 text-warning-foreground!'>accent primary</p>
       <p className='p-2 bg-warning-hover text-warning-foreground!'>hover</p>
@@ -119,7 +162,13 @@ Warning colors indicate caution, risk, or actions that require attention but are
     </div>
   </div>
   <div className='dark-mode grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-warning text-warning-foreground!'>accent (dark)</p>
+    <div className='rounded-xs p-2 col-span-2 bg-warning flex items-center justify-between'>
+      <p className='text-warning-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-warning-foreground!' />
+        <p className='text-xs text-warning-foreground!'>dark</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-warning'>
       <p className='p-2 text-warning-foreground!'>accent primary</p>
       <p className='p-2 bg-warning-hover text-warning-foreground!'>hover</p>
@@ -139,7 +188,13 @@ Danger colors represent destructive, irreversible, or critical actions and state
 
 <div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
   <div className='grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-error text-error-foreground!'>accent</p>
+    <div className='rounded-xs p-2 col-span-2 bg-error flex items-center justify-between'>
+      <p className='text-error-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-error-foreground!' />
+        <p className='text-xs text-error-foreground!'>light</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-error'>
       <p className='p-2 text-error-foreground!'>accent primary</p>
       <p className='p-2 bg-error-hover text-error-foreground!'>hover</p>
@@ -152,7 +207,13 @@ Danger colors represent destructive, irreversible, or critical actions and state
     </div>
   </div>
   <div className='dark-mode grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-error text-error-foreground!'>accent (dark)</p>
+    <div className='rounded-xs p-2 col-span-2 bg-error flex items-center justify-between'>
+      <p className='text-error-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-error-foreground!' />
+        <p className='text-xs text-error-foreground!'>dark</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-error'>
       <p className='p-2 text-error-foreground!'>accent primary</p>
       <p className='p-2 bg-error-hover text-error-foreground!'>hover</p>
@@ -172,7 +233,13 @@ Info colors communicate neutral informational states, guidance, and non-critical
 
 <div className='grid grid-cols-2 gap-4 capitalize! pt-4 pb-10'>
   <div className='grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-info text-info-foreground!'>accent</p>
+    <div className='rounded-xs p-2 col-span-2 bg-info flex items-center justify-between'>
+      <p className='text-info-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-info-foreground!' />
+        <p className='text-xs text-info-foreground!'>light</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-info'>
       <p className='p-2 text-info-foreground!'>accent primary</p>
       <p className='p-2 bg-info-hover text-info-foreground!'>hover</p>
@@ -185,7 +252,13 @@ Info colors communicate neutral informational states, guidance, and non-critical
     </div>
   </div>
   <div className='dark-mode grid grid-cols-2 gap-2'>
-    <p className='rounded-xs p-2 col-span-2 bg-info text-info-foreground!'>accent (dark)</p>
+    <div className='rounded-xs p-2 col-span-2 bg-info flex items-center justify-between'>
+      <p className='text-info-foreground!'>accent</p>
+      <div className='flex items-center gap-1'>
+        <GearSixIcon className='text-info-foreground!' />
+        <p className='text-xs text-info-foreground!'>dark</p>
+      </div>
+    </div>
     <div className='rounded-xs col-span-1 px-2 pb-4 bg-info'>
       <p className='p-2 text-info-foreground!'>accent primary</p>
       <p className='p-2 bg-info-hover text-info-foreground!'>hover</p>
