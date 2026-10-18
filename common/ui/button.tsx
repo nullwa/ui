@@ -56,9 +56,9 @@ const styles = cva(
       { state: 'default', variant: 'link', class: 'bg-transparent text-gray-800 dark:text-gray-200 hover:text-gray-950 dark:hover:text-white border-transparent' },
 
       // ─── state: brand ─────────────────────────────────────────────────────────
-      { state: 'brand', variant: 'solid', class: 'bg-brand-600 hover:bg-brand-700 border-brand-800 text-white shadow-skeuomorphic' },
-      { state: 'brand', variant: 'filled', class: 'bg-brand-50 hover:bg-brand-100 border-brand-300 text-brand-800 dark:bg-brand-950 dark:hover:bg-brand-900 dark:border-brand-700 dark:text-brand-200' },
-      { state: 'brand', variant: 'outline', class: 'bg-white hover:bg-brand-50 border-brand-300 text-brand-600 dark:bg-transparent dark:hover:bg-brand-950 dark:border-brand-600 dark:text-brand-400' },
+      { state: 'brand', variant: 'solid', class: 'bg-brand hover:bg-brand-hover border-brand text-brand-foreground shadow-skeuomorphic' },
+      { state: 'brand', variant: 'filled', class: 'bg-brand-alt hover:bg-brand-alt-hover border-brand-alt text-brand-alt-foreground' },
+      { state: 'brand', variant: 'outline', class: 'bg-white hover:bg-brand-alt-hover border-brand text-brand-alt dark:bg-transparent' },
       { state: 'brand', variant: 'ghost', class: 'bg-transparent hover:bg-brand-50 dark:hover:bg-brand-950 text-brand-600 dark:text-brand-400 border-transparent' },
       { state: 'brand', variant: 'link', class: 'bg-transparent text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 border-transparent' },
 
