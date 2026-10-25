@@ -1,0 +1,293 @@
+'use client'
+import { type FC, type ReactNode, type ComponentProps, useState, useRef } from 'react'
+import { tm, cva, type VariantProps } from '@/common/utils/tw-merge'
+
+import { XIcon, SpinnerIcon } from '@phosphor-icons/react'
+
+type Props = Omit<ComponentProps<'input'>, 'size'> &
+  VariantProps<typeof styles> & {
+    label?: ReactNode
+    hint?: string
+    messages?: string[]
+    affix?: ReactNode
+    suffix?: ReactNode
+    loading?: boolean
+    clearable?: boolean
+  }
+
+const Input: FC<Props> = ({ id, label, placeholder, hint, messages, affix, suffix, clearable, loading, disabled, value, defaultValue, onChange, state, size, radius, className, ...rest }) => {
+  // Separate left/right addon detection for correct padding logic:
+  // - hasLeftAddon  → affix is present, remove left input padding (addon owns it)
+  // - hasRightAddon → suffix, clearable, or loading is present, remove right input padding
+  const hasLeftAddon = Boolean(affix)
+  const hasRightAddon = Boolean(suffix || clearable || loading)
+
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [internalValue, setInternalValue] = useState(defaultValue ?? '')
+  const isControlled = value !== undefined
+  const currentValue = isControlled ? value : internalValue
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!isControlled) setInternalValue(e.target.value)
+    onChange?.(e)
+  }
+
+  const handleClear = () => {
+    if (!isControlled) setInternalValue('')
+    const nativeInput = inputRef.current
+    if (nativeInput) {
+      Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')?.set?.call(nativeInput, '')
+      nativeInput.dispatchEvent(new Event('input', { bubbles: true }))
+    }
+    onChange?.({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>)
+    inputRef.current?.focus()
+  }
+
+  const showClearButton = clearable && !disabled && !loading && String(currentValue).length > 0
+
+  return (
+    <div className='flex flex-col gap-1'>
+      {/* Label */}
+      {label && label}
+
+      {/* Input shell */}
+      <div data-addon={hasLeftAddon || hasRightAddon} data-disabled={disabled} data-loading={loading} className={tm(styles({ state, size, radius }), className)}>
+        <div className={tm(hasLeftAddon ? addonStyles({ size }) : edgePaddingStyles({ size, side: 'left' }))}>{affix}</div>
+        {/* Input */}
+        <input
+          id={id}
+          ref={inputRef}
+          placeholder={placeholder}
+          disabled={disabled || loading}
+          value={isControlled ? value : internalValue}
+          onChange={handleChange}
+          aria-invalid={state === 'error'}
+          aria-busy={loading}
+          aria-label={label ? undefined : rest['aria-label']}
+          className={tm(inputStyles({ size }))}
+          {...rest}
+        />
+        <div className={tm(hasRightAddon ? addonStyles({ size }) : edgePaddingStyles({ size, side: 'right' }), clearable && 'pointer-events-auto')}>
+          {/* Clear button */}
+          {clearable && (
+            <button
+              type='button'
+              onClick={handleClear}
+              aria-label='Clear input'
+              tabIndex={showClearButton ? 0 : -1}
+              className={tm(clearButtonStyles({ size }), !showClearButton && 'invisible pointer-events-none', (suffix || loading) && 'mr-1')}>
+              <XIcon weight='bold' />
+            </button>
+          )}
+          {/* Suffix / spinner */}
+          {loading ? <SpinnerIcon className={tm(spinnerStyles({ size }))} /> : suffix}
+        </div>
+      </div>
+
+      {/* Hint */}
+      {hint && (
+        <p className={tm(hintStyles({ size }), 'wrap-break-word')} role={state === 'error' ? 'alert' : undefined}>
+          {hint}
+        </p>
+      )}
+
+      {/* Validation messages */}
+      {messages && messages.length > 0 && (
+        <ul className='flex flex-col'>
+          {messages.map((message, index) => (
+            <li key={index} className={tm(messageStyles({ state, size }), 'wrap-break-word')}>
+              {message}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
+}
+
+// #region styles
+const styles = cva(
+  [
+    'group/input flex items-center overflow-hidden',
+    'border-2 outline-none bg-gray-50/75 dark:bg-gray-900',
+    'transition-[border-color,box-shadow] duration-150',
+    'focus-within:ring-2 focus-within:ring-offset-0',
+    'data-[disabled=true]:bg-gray-50 dark:data-[disabled=true]:bg-gray-800/60',
+    'data-[disabled=true]:cursor-not-allowed data-[disabled=true]:opacity-60',
+  ],
+  {
+    variants: {
+      state: {
+        default: [
+          'border-gray-200 dark:border-gray-700',
+          'hover:border-gray-300 dark:hover:border-gray-600',
+          'focus-within:border-gray-400 dark:focus-within:border-gray-500',
+          'focus-within:ring-gray-400/20 dark:focus-within:ring-gray-500/20',
+        ],
+        brand: [
+          'border-brand-300 dark:border-brand-600/70',
+          'hover:border-brand-400 dark:hover:border-brand-500',
+          'focus-within:border-brand-500 dark:focus-within:border-brand-400',
+          'focus-within:ring-brand-500/20 dark:focus-within:ring-brand-400/20',
+        ],
+        error: ['border-red-300 dark:border-red-600/70', 'hover:border-red-400 dark:hover:border-red-500', 'focus-within:border-red-500 dark:focus-within:border-red-400', 'focus-within:ring-red-500/20 dark:focus-within:ring-red-400/20'],
+        success: [
+          'border-emerald-300 dark:border-emerald-600/70',
+          'hover:border-emerald-400 dark:hover:border-emerald-500',
+          'focus-within:border-emerald-500 dark:focus-within:border-emerald-400',
+          'focus-within:ring-emerald-500/20 dark:focus-within:ring-emerald-400/20',
+        ],
+        warning: [
+          'border-amber-300 dark:border-amber-600/70',
+          'hover:border-amber-400 dark:hover:border-amber-500',
+          'focus-within:border-amber-600 dark:focus-within:border-amber-400',
+          'focus-within:ring-amber-500/20 dark:focus-within:ring-amber-400/20',
+        ],
+        info: [
+          'border-violet-300 dark:border-violet-600/70',
+          'hover:border-violet-400 dark:hover:border-violet-500',
+          'focus-within:border-violet-500 dark:focus-within:border-violet-400',
+          'focus-within:ring-violet-500/20 dark:focus-within:ring-violet-400/20',
+        ],
+      },
+      size: {
+        sm: 'h-7',
+        md: 'h-8',
+        lg: 'h-9',
+      },
+      radius: {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        rounded: 'rounded-full',
+      },
+    },
+    defaultVariants: {
+      state: 'default',
+      size: 'md',
+      radius: 'md',
+    },
+  },
+)
+
+const addonStyles = cva(
+  [
+    'flex items-center justify-center h-full shrink-0',
+    'pointer-events-none select-none',
+    'text-gray-400 dark:text-gray-500',
+    'transition-colors duration-150',
+    'group-focus-within/input:text-gray-500 dark:group-focus-within/input:text-gray-400',
+  ],
+  {
+    variants: {
+      size: {
+        sm: 'px-1.5 gap-1 [&_svg]:size-3.5 text-xs',
+        md: 'px-2   gap-1 [&_svg]:size-4   text-sm',
+        lg: 'px-2.5 gap-1 [&_svg]:size-4.5 text-sm',
+      },
+    },
+    defaultVariants: { size: 'md' },
+  },
+)
+
+const edgePaddingStyles = cva('shrink-0', {
+  variants: {
+    size: {
+      sm: 'w-1.5',
+      md: 'w-2',
+      lg: 'w-2.5',
+    },
+    side: {
+      left: '', // kept for semantic clarity; width alone is sufficient
+      right: '',
+    },
+  },
+  defaultVariants: { size: 'md', side: 'left' },
+})
+
+const inputStyles = cva(
+  [
+    'flex-1 h-full min-w-0 bg-transparent outline-none border-none ring-0 ring-offset-0',
+    'text-gray-900 dark:text-gray-50',
+    'placeholder:text-gray-400/70 dark:placeholder:text-gray-500',
+    'disabled:cursor-not-allowed',
+    'transition-colors duration-150',
+  ],
+  {
+    variants: {
+      size: {
+        sm: 'text-xs placeholder:text-xs',
+        md: 'text-sm placeholder:text-sm',
+        lg: 'text-sm placeholder:text-sm',
+      },
+    },
+    defaultVariants: { size: 'md' },
+  },
+)
+
+const clearButtonStyles = cva(
+  [
+    'flex items-center justify-center rounded-full cursor-pointer shrink-0',
+    'text-gray-400 dark:text-gray-500',
+    'hover:text-gray-600 dark:hover:text-gray-300',
+    'hover:bg-gray-100 dark:hover:bg-gray-800',
+    'active:scale-90',
+    'transition-all duration-100',
+  ],
+  {
+    variants: {
+      size: {
+        sm: 'size-3.5 [&_svg]:size-2.5',
+        md: 'size-4   [&_svg]:size-3',
+        lg: 'size-4.5 [&_svg]:size-3.5',
+      },
+    },
+    defaultVariants: { size: 'md' },
+  },
+)
+
+const spinnerStyles = cva('animate-spin text-gray-400 dark:text-gray-500', {
+  variants: {
+    size: {
+      sm: 'size-3.5',
+      md: 'size-4',
+      lg: 'size-4.5',
+    },
+  },
+  defaultVariants: { size: 'md' },
+})
+
+const hintStyles = cva('leading-snug text-gray-500 first-letter:uppercase', {
+  variants: {
+    size: {
+      sm: 'text-[10px]',
+      md: 'text-xs',
+      lg: 'text-xs',
+    },
+  },
+  defaultVariants: { size: 'md' },
+})
+
+const messageStyles = cva('leading-snug', {
+  variants: {
+    state: {
+      default: 'text-gray-400 dark:text-gray-500',
+      brand: 'text-brand-600 dark:text-brand-400',
+      error: 'text-red-600 dark:text-red-400',
+      success: 'text-emerald-600 dark:text-emerald-400',
+      warning: 'text-amber-600 dark:text-amber-400',
+      info: 'text-violet-600 dark:text-violet-400',
+    },
+    size: {
+      sm: 'text-[10px]',
+      md: 'text-xs',
+      lg: 'text-xs',
+    },
+  },
+  defaultVariants: { state: 'default', size: 'md' },
+})
+// #endregion
+
+Input.displayName = 'Input'
+export { Input }

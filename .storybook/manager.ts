@@ -3,19 +3,19 @@ import { create } from 'storybook/theming'
 
 addons.setConfig({
   showPanel: true,
-  panelPosition: 'right',
+  panelPosition: 'left',
   theme: create({
     base: 'dark',
-    brandTitle: 'Neue UI',
-    brandUrl: 'https://github.com/nullwa/neue-ui',
-    brandImage: '/icon-text-white.svg',
+    brandTitle: '@nullwa/ui',
+    brandImage: './logo.svg',
+    brandUrl: 'https://github.com/nullwa/ui',
     appBorderRadius: 2,
     inputBorderRadius: 2,
-    fontBase: '\'IBM Plex Sans\', sans-serif',
-    fontCode: '\'IBM Plex Mono\', monospace'
+    fontBase: "'Geist', sans-serif",
+    fontCode: "'Geist', monospace",
   }),
   previewTabs: {
-    canvas: 'Playground'
+    canvas: 'Playground',
   },
-  navSize: 250
+  navSize: 300,
 })
