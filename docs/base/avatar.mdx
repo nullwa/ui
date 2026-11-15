@@ -1,15 +1,35 @@
 ---
 title: Avatar
-description: An image element with a fallback for representing the user.
+description: A user image with initials or other fallback content.
 ---
 
 import { story } from '@/components/stories/avatar.story'
+
+A compact image for representing a person or other entity. If the image URL is
+missing or fails to load, the avatar displays the supplied fallback instead.
 
 <story.WithControl />
 
 ### How to use
 
+- Use an image URL when one is available, and provide fallback text for cases where it is not.
+- Use the rounded shape for profile pictures, or the squared shape for other entities.
+
 ```tsx
 import { Avatar } from '@/core/ui/avatar'
-;<Avatar size='md' src={IMAGE} fallback='WS' />
+;<Avatar src={IMAGE} alt='Wales Smith' fallback='WS' size='md' />
 ```
+
+### Props
+
+| Prop        | Type                     | Default     | Description                                                      |
+| ----------- | ------------------------ | ----------- | ---------------------------------------------------------------- |
+| `src`       | `string`                 | none        | Image URL. The fallback is shown if omitted or if loading fails. |
+| `alt`       | `string`                 | required    | Alternative text for the image.                                  |
+| `fallback`  | `string`                 | required    | Text displayed when there is no usable image.                    |
+| `size`      | `'sm' \| 'md' \| 'lg'`   | `'md'`      | Avatar dimensions: 28px, 32px, or 36px.                          |
+| `radius`    | `'rounded' \| 'squared'` | `'rounded'` | Shape: circular or rounded-square.                               |
+| `className` | `string`                 | none        | Additional classes merged onto the root element.                 |
+
+Standard image attributes such as `width`, `height`, and `loading` are also
+passed through to the image element.
