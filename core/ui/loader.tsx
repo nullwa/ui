@@ -4,22 +4,16 @@ import { type FC, useEffect, useState } from 'react'
 
 import { tm } from '@/core/utils/tw-merge'
 
-/* ─────────────────────────────────────────────────────────
- * LOADING — pixel-grid loader for long-running work
- *
- * Variants:
- *   drive  — square cells, chevron wavefront driving right;
- *            the 650ms cycle is shorter than the sweep, so
- *            two fronts are always in flight
- *   dots   — same wavefront, circular cells
- *   orbit  — a comet lapping the grid perimeter
+/**
+ * // core/ui/loader.tsx
+ * Figma source: → Loader;
  *
  * Paired with a shimmering label and a live elapsed timer
  * in mono tabular figures. Reduced motion freezes the grid
  * to its dim state; the timer still ticks.
  *
  * Needs the `pixel-on` and `shimmer-text` keyframes in theme.css.
- * ───────────────────────────────────────────────────────── */
+ */
 
 const Loader: FC<Props> = ({ label = 'churning', variant = 'drive', className }) => {
   const elapsed = useElapsed()
@@ -45,6 +39,14 @@ Loader.displayName = 'Loader'
 export { Loader }
 
 // #region Types
+
+/**
+ * drive  — square cells, chevron wavefront driving right;
+ *          the 650ms cycle is shorter than the sweep, so
+ *          two fronts are always in flight
+ * dots   — same wavefront, circular cells
+ * orbit  — a comet lapping the grid perimeter
+ */
 type Variant = 'drive' | 'dots' | 'orbit'
 
 type Props = {
