@@ -19,11 +19,11 @@
   --shadow-3xl: 0px 32px 64px -12px rgba(0, 0, 0, 0.14), 0px 5px 5px -2.5px rgba(0, 0, 0, 0.04);
   --shadow-skeuomorphic: inset 0 1.5px 1px rgba(255, 255, 255, 0.35), inset 0 -1px 1px rgba(0, 0, 0, 0.25);
   --shadow-xs-skeuomorphic: inset 0 1px 0.5px rgba(255, 255, 255, 0.35), inset 0 -1px 1px rgba(0, 0, 0, 0.15);
-  --shadow-modern-mockup-inner-lg: 0px 0px 3.765px 1.255px rgba(10, 13, 18, 0.08) inset, 0px 0px 2.51px 1.255px rgba(10, 13, 18, 0.03) inset;
-  --shadow-modern-mockup-inner-md: 0px 0px 1.692px 0.564px rgba(10, 13, 18, 0.08) inset, 0px 0px 1.128px 0.564px rgba(10, 13, 18, 0.03) inset;
-  --shadow-modern-mockup-inner-sm: 0px 0px 4.48px 1.493px rgba(10, 13, 18, 0.08) inset, 0px 0px 2.987px 1.493px rgba(10, 13, 18, 0.03) inset;
-  --shadow-modern-mockup-outer-lg: 0px 7.529px 10.039px -2.51px rgba(10, 13, 18, 0.08), 0px 2.51px 3.765px -1.255px rgba(10, 13, 18, 0.03), 0px 1.255px 1.255px -0.627px rgba(10, 13, 18, 0.04);
-  --shadow-modern-mockup-outer-md: 0px 3.385px 4.513px -1.128px rgba(10, 13, 18, 0.08), 0px 1.128px 1.692px -0.564px rgba(10, 13, 18, 0.03), 0px 0.564px 0.564px -0.282px rgba(10, 13, 18, 0.04);
+  --shadowrn-mockup-inner-lg: 0px 0px 3.765px 1.255px rgba(10, 13, 18, 0.08) inset, 0px 0px 2.51px 1.255px rgba(10, 13, 18, 0.03) inset;
+  --shadowrn-mockup-inner-md: 0px 0px 1.692px 0.564px rgba(10, 13, 18, 0.08) inset, 0px 0px 1.128px 0.564px rgba(10, 13, 18, 0.03) inset;
+  --shadowrn-mockup-inner-sm: 0px 0px 4.48px 1.493px rgba(10, 13, 18, 0.08) inset, 0px 0px 2.987px 1.493px rgba(10, 13, 18, 0.03) inset;
+  --shadowrn-mockup-outer-lg: 0px 7.529px 10.039px -2.51px rgba(10, 13, 18, 0.08), 0px 2.51px 3.765px -1.255px rgba(10, 13, 18, 0.03), 0px 1.255px 1.255px -0.627px rgba(10, 13, 18, 0.04);
+  --shadowrn-mockup-outer-md: 0px 3.385px 4.513px -1.128px rgba(10, 13, 18, 0.08), 0px 1.128px 1.692px -0.564px rgba(10, 13, 18, 0.03), 0px 0.564px 0.564px -0.282px rgba(10, 13, 18, 0.04);
   --drop-shadow-iphone-mockup: 20px 12px 18px rgba(16, 24, 40, 0.2);
   /* #endregion */
   /* #region default-colors */
@@ -31,7 +31,6 @@
   --color-black: oklch(0% 0 0);
   --color-snow: oklch(0.9911 0 0);
   --color-eclipse: oklch(0.2103 0.0059 285.89);
-
   /* brand */
   --color-brand: oklch(0.6204 0.195 253.83);
   --color-brand-foreground: var(--color-snow);
@@ -101,15 +100,72 @@
   --color-field-placeholder: var(--color-foreground-muted);
   --color-field-foreground: var(--color-foreground-primary);
   /* #endregion */
+  /* #region overriding default font sizes */
+  --text-*: initial;
+  --text-body-xs: 12px;
+  --text-body-xs--line-height: 1.33;
+  --text-body-xs--font-weight: 400;
+  --text-body: 14px;
+  --text-body--line-height: 1.43;
+  --text-body--font-weight: 400;
+  --text-h6: 16px;
+  --text-h6--line-height: 1.5;
+  --text-h6--font-weight: 600;
+  --text-h6--letter-spacing: var(--tracking-tight);
+  --text-h5: 18px;
+  --text-h5--line-height: 1.39;
+  --text-h5--font-weight: 600;
+  --text-h5--letter-spacing: var(--tracking-tight);
+  --text-h4: 20px;
+  --text-h4--line-height: 1.33;
+  --text-h4--font-weight: 600;
+  --text-h4--letter-spacing: var(--tracking-tight);
+  --text-h3: 24px;
+  --text-h3--line-height: 1.25;
+  --text-h3--font-weight: 600;
+  --text-h3--letter-spacing: var(--tracking-tight);
+  --text-h2: 32px;
+  --text-h2--line-height: 1.17;
+  --text-h2--font-weight: 600;
+  --text-h2--letter-spacing: var(--tracking-tight);
+  --text-h1: 42px;
+  --text-h1--line-height: 1.11;
+  --text-h1--font-weight: 600;
+  --text-h1--letter-spacing: var(--tracking-tight);
+  /* #endregion */
 }
 
 @layer base {
   /* ------------------------------------------------- */
-  /*              @nullwa/ui - light theme             */
+  /* fonts sizes                                       */
+  /* ------------------------------------------------- */
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5 {
+    @apply text-h5;
+  }
+  h6 {
+    @apply text-h6;
+  }
+  body {
+    @apply text-body;
+  }
+  /* ------------------------------------------------- */
+  /* light theme                                       */
   /* ------------------------------------------------- */
   :root,
-  .light-mode,
-  [data-theme='light-mode'] {
+  .light,
+  [data-theme='light'] {
     color-scheme: light;
     /* brand */
     --color-brand: oklch(0.6204 0.195 253.83);
@@ -181,10 +237,10 @@
     --color-field-foreground: var(--color-foreground-primary);
   }
   /* ------------------------------------------------- */
-  /*              @nullwa/ui - dark theme              */
+  /* dark theme                                        */
   /* ------------------------------------------------- */
-  .dark-mode,
-  [data-theme='dark-mode'] {
+  .dark,
+  [data-theme='dark'] {
     color-scheme: dark;
     /* brand */
     --color-brand: oklch(0.6204 0.195 253.83);

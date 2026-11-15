@@ -1,0 +1,192 @@
+@layer base {
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-weight: var(--text-body--font-weight);
+  }
+}
+
+/* ============================================================
+   PROSE (MDX). Unlayered, so it beats the typography plugin.
+   Rhythm unit = body size; every margin is a multiple of it.
+   ============================================================ */
+.prose {
+  --prose-unit: var(--text-body);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  font-weight: var(--text-body--font-weight);
+}
+
+/* ---------- headings: size, line-height, weight, tracking ---------- */
+.prose h1 {
+  font-size: var(--text-h1);
+  line-height: var(--text-h1--line-height);
+  font-weight: var(--text-h1--font-weight);
+  letter-spacing: var(--text-h1--letter-spacing);
+}
+.prose h2 {
+  font-size: var(--text-h2);
+  line-height: var(--text-h2--line-height);
+  font-weight: var(--text-h2--font-weight);
+  letter-spacing: var(--text-h2--letter-spacing);
+}
+.prose h3 {
+  font-size: var(--text-h3);
+  line-height: var(--text-h3--line-height);
+  font-weight: var(--text-h3--font-weight);
+  letter-spacing: var(--text-h3--letter-spacing);
+}
+.prose h4 {
+  font-size: var(--text-h4);
+  line-height: var(--text-h4--line-height);
+  font-weight: var(--text-h4--font-weight);
+  letter-spacing: var(--text-h4--letter-spacing);
+}
+.prose h5 {
+  font-size: var(--text-h5);
+  line-height: var(--text-h5--line-height);
+  font-weight: var(--text-h5--font-weight);
+  letter-spacing: var(--text-h5--letter-spacing);
+}
+.prose h6 {
+  font-size: var(--text-h6);
+  line-height: var(--text-h6--line-height);
+  font-weight: var(--text-h6--font-weight);
+  letter-spacing: var(--text-h6--letter-spacing);
+}
+
+/* ---------- heading margins (bigger heading = more space above) ---------- */
+.prose h1 {
+  margin-top: 0;
+  margin-bottom: calc(var(--prose-unit) * 1.25);
+}
+.prose h2 {
+  margin-top: calc(var(--prose-unit) * 2.5);
+  margin-bottom: calc(var(--prose-unit) * 0.75);
+}
+.prose h3 {
+  margin-top: calc(var(--prose-unit) * 2);
+  margin-bottom: calc(var(--prose-unit) * 0.625);
+}
+.prose h4 {
+  margin-top: calc(var(--prose-unit) * 1.75);
+  margin-bottom: calc(var(--prose-unit) * 0.5);
+}
+.prose h5,
+.prose h6 {
+  margin-top: calc(var(--prose-unit) * 1.5);
+  margin-bottom: calc(var(--prose-unit) * 0.5);
+}
+
+/* heading directly after heading: tighten */
+.prose :is(h1, h2, h3, h4, h5, h6) + :is(h2, h3, h4, h5, h6) {
+  margin-top: calc(var(--prose-unit) * 1);
+}
+/* first element in the content never gets a top margin */
+.prose > :first-child {
+  margin-top: 0;
+}
+
+/* ---------- body text ---------- */
+.prose :is(p, li, dd, dt) {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+.prose p {
+  margin-block: var(--prose-unit);
+}
+
+/* ---------- lists ---------- */
+.prose :is(ul, ol) {
+  margin-block: var(--prose-unit);
+  padding-inline-start: calc(var(--prose-unit) * 1.5);
+}
+.prose li {
+  margin-block: calc(var(--prose-unit) * 0.3);
+}
+.prose li > :is(ul, ol) {
+  margin-block: calc(var(--prose-unit) * 0.3);
+}
+.prose li > p {
+  margin-block: calc(var(--prose-unit) * 0.5);
+}
+
+/* ---------- blockquote, hr, images ---------- */
+.prose blockquote {
+  margin-block: calc(var(--prose-unit) * 1.5);
+  padding-inline-start: var(--prose-unit);
+  font-size: var(--text-body);
+}
+.prose hr {
+  margin-block: calc(var(--prose-unit) * 2.5);
+}
+.prose :is(img, video, figure) {
+  margin-block: calc(var(--prose-unit) * 1.5);
+}
+
+/* ---------- tables ---------- */
+.prose table {
+  margin-block: calc(var(--prose-unit) * 1.5);
+}
+.prose :is(th, td) {
+  font-size: var(--text-body-xs);
+  line-height: var(--text-body-xs--line-height);
+  padding: calc(var(--prose-unit) * 0.5) calc(var(--prose-unit) * 0.75);
+}
+
+/* ---------- code ---------- */
+.prose :not(pre) > code {
+  font-size: var(--text-body-xs);
+}
+.prose pre,
+.prose pre code,
+figure.shiki,
+figure.shiki code {
+  font-size: var(--text-body-xs);
+  line-height: 1.6;
+}
+/* code blocks are figures; keep the same vertical rhythm as other blocks */
+.prose figure.shiki {
+  margin-block: calc(var(--prose-unit) * 1.5);
+}
+
+/* ---------- components inside MDX ---------- */
+.prose [role='alert'],
+.prose .fd-callout {
+  margin-block: calc(var(--prose-unit) * 1.5);
+  font-size: var(--text-body);
+}
+.prose [role='tablist'] button {
+  font-size: var(--text-body);
+}
+.prose details summary {
+  font-size: var(--text-body);
+  font-weight: 600;
+}
+.prose .fd-steps h3 {
+  font-size: var(--text-h5);
+  line-height: var(--text-h5--line-height);
+  margin-block: 0;
+}
+
+/* ============================================================
+   CHROME (sidebar, TOC, nav, search): sizes only, no spacing
+   ============================================================ */
+#nd-sidebar a,
+#nd-sidebar button {
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+}
+#nd-toc a,
+#nd-tocnav a {
+  font-size: var(--text-body-xs);
+  line-height: var(--text-body-xs--line-height);
+}
+#nd-nav,
+#nd-nav a {
+  font-size: var(--text-body);
+}
+[cmdk-root] input,
+[cmdk-item] {
+  font-size: var(--text-body);
+}

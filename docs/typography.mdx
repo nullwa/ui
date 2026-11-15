@@ -1,0 +1,201 @@
+---
+title: Typography
+description: The full type scale, semantic text tokens, and Tailwind overrides.
+---
+
+Typography is built on a geometric type scale: `base × ratio^step`, with **14px** and **1.2** as defaults. Every text style is a semantic token that composes font size, weight, line height, and tracking, so components express intent (heading, body, label) rather than raw values.
+
+## Principles
+
+- **Base is 14px.** Body text, tables, and controls all start from 14px, not 16px. Dense UI stays readable without feeling cramped.
+- **Tokens over values.** Use `text-h3`, never `text-[24px] leading-[1.25]`.
+- **One weight for headings.** All headings are 600. Hierarchy comes from size, not weight.
+- **Tight tracking on headings only.** Body text keeps default tracking.
+
+## Scale
+
+The sizes follow `14 × 1.2^n`, rounded to whole pixels. `h5` (18px) is an intentional half-step between `h4` and `h6` for card titles.
+
+| Step | Calculated | Token     | Size |
+| ---- | ---------- | --------- | ---- |
+| −1   | 11.7px     | `body-xs` | 12px |
+| 0    | 14px       | `body`    | 14px |
+| 1    | 16.8px     | `h6`      | 16px |
+| 2    | 20.2px     | `h4`      | 20px |
+| 3    | 24.2px     | `h3`      | 24px |
+| 4    | 29.0px     | `h2`      | 30px |
+| 5    | 34.8px     | `h1`      | 36px |
+
+## Headings
+
+| Token | Size | rem      | Weight | Line height | Computed | Tracking | Example                        |
+| ----- | ---- | -------- | ------ | ----------- | -------- | -------- | ------------------------------ |
+| h1    | 36px | 2.25rem  | 600    | 1.11        | 40px     | tight    | Build better interfaces        |
+| h2    | 30px | 1.875rem | 600    | 1.17        | 35px     | tight    | Built for the intelligence age |
+| h3    | 24px | 1.5rem   | 600    | 1.25        | 30px     | tight    | Pricing on your terms          |
+| h4    | 20px | 1.25rem  | 600    | 1.33        | 27px     | tight    | Apply to the startup program   |
+| h5    | 18px | 1.125rem | 600    | 1.39        | 25px     | tight    | Card titles                    |
+| h6    | 16px | 1rem     | 600    | 1.50        | 24px     | tight    | Smaller feature headers        |
+
+## Body
+
+| Token     | Size | rem      | Weight | Line height | Computed | Usage                                                                          |
+| --------- | ---- | -------- | ------ | ----------- | -------- | ------------------------------------------------------------------------------ |
+| `body`    | 14px | 0.875rem | 400    | 1.75        | 24.5px   | Primary body text used across documentation, marketing copy, and descriptions. |
+| `body-sm` | 14px | 0.875rem | 400    | 1.50        | 21px     | Secondary body, table cells, navigation, and sidebar items.                    |
+| `body-xs` | 12px | 0.75rem  | 400    | 1.25        | 15px     | Captions, badges, helper text, and fine print.                                 |
+
+## Code
+
+| Token  | Size | rem      | Family |
+| ------ | ---- | -------- | ------ |
+| `code` | 14px | 0.875rem | mono   |
+
+Inline code and code blocks share the body size, so a snippet never looks larger or smaller than the sentence around it.
+
+## Tailwind overrides
+
+Loom runs on Tailwind v4, so the scale lives in the CSS `@theme` block instead of `tailwind.config.js`. Each `--text-*` token registers a `text-*` utility, and the `--line-height`, `--font-weight`, and `--letter-spacing` modifiers are applied automatically with it.
+
+```css
+@import 'tailwindcss';
+
+@theme {
+  /* Tracking */
+  --tracking-tight: -0.025em;
+
+  /* Mono family */
+  --font-mono: ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Headings */
+  --text-h1: 2.25rem;
+  --text-h1--line-height: 1.11;
+  --text-h1--font-weight: 600;
+  --text-h1--letter-spacing: var(--tracking-tight);
+
+  --text-h2: 1.875rem;
+  --text-h2--line-height: 1.17;
+  --text-h2--font-weight: 600;
+  --text-h2--letter-spacing: var(--tracking-tight);
+
+  --text-h3: 1.5rem;
+  --text-h3--line-height: 1.25;
+  --text-h3--font-weight: 600;
+  --text-h3--letter-spacing: var(--tracking-tight);
+
+  --text-h4: 1.25rem;
+  --text-h4--line-height: 1.33;
+  --text-h4--font-weight: 600;
+  --text-h4--letter-spacing: var(--tracking-tight);
+
+  --text-h5: 1.125rem;
+  --text-h5--line-height: 1.39;
+  --text-h5--font-weight: 600;
+  --text-h5--letter-spacing: var(--tracking-tight);
+
+  --text-h6: 1rem;
+  --text-h6--line-height: 1.5;
+  --text-h6--font-weight: 600;
+  --text-h6--letter-spacing: var(--tracking-tight);
+
+  /* Body */
+  --text-body: 0.875rem;
+  --text-body--line-height: 1.75;
+  --text-body--font-weight: 400;
+
+  --text-body-sm: 0.875rem;
+  --text-body-sm--line-height: 1.5;
+  --text-body-sm--font-weight: 400;
+
+  --text-body-xs: 0.75rem;
+  --text-body-xs--line-height: 1.25;
+  --text-body-xs--font-weight: 400;
+
+  /* Code */
+  --text-code: 0.875rem;
+  --text-code--line-height: 1.5;
+}
+
+@layer base {
+  html {
+    font-size: 16px; /* keep rem math predictable; 14px comes from --text-body */
+  }
+
+  body {
+    @apply text-body;
+  }
+
+  h1 {
+    @apply text-h1;
+  }
+  h2 {
+    @apply text-h2;
+  }
+  h3 {
+    @apply text-h3;
+  }
+  h4 {
+    @apply text-h4;
+  }
+  h5 {
+    @apply text-h5;
+  }
+  h6 {
+    @apply text-h6;
+  }
+
+  code,
+  kbd,
+  pre,
+  samp {
+    @apply font-mono text-code;
+  }
+}
+```
+
+<Callout>
+  Don't set `html { font-size: 14px }`. Every `rem` in Tailwind (spacing, radii, breakpoints) would shrink with it. Apply 14px through the `body` token instead.
+</Callout>
+
+## Usage
+
+```tsx
+export function PricingCard() {
+  return (
+    <section className='rounded-lg border p-6'>
+      <h3 className='text-h3'>Pricing on your terms</h3>
+      <p className='mt-2 text-body text-muted-foreground'>Start free, then pay only for what you use.</p>
+      <p className='mt-4 text-body-xs text-muted-foreground'>Prices exclude applicable taxes.</p>
+    </section>
+  )
+}
+```
+
+### Overriding a single usage
+
+Tokens compose with normal utilities, and the last one wins. Prefer another token before reaching for an arbitrary value.
+
+```tsx
+{
+  /* Heading-sized text with default weight */
+}
+;<p className='text-h4 font-normal'>Lighter heading</p>
+
+{
+  /* Body text without relaxed leading */
+}
+;<p className='text-body leading-normal'>Compact paragraph</p>
+```
+
+## Choosing a token
+
+| You need…                          | Use                    |
+| ---------------------------------- | ---------------------- |
+| Page title or hero                 | `text-h1` or `text-h2` |
+| Section heading                    | `text-h3`              |
+| Card or dialog title               | `text-h4` or `text-h5` |
+| Group label inside a form or panel | `text-h6`              |
+| Paragraphs, docs, descriptions     | `text-body`            |
+| Table cells, menus, sidebar items  | `text-body-sm`         |
+| Captions, badges, helper text      | `text-body-xs`         |
+| Inline code, code blocks           | `font-mono text-code`  |

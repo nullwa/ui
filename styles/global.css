@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/solar.css';
+@import 'fumadocs-ui/css/preset.css';
+@import '@fumadocs/story/css/preset.css';
+
+@import './theme.css';
+@import './overrides.css';
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+
+/* #region Utility classes */
+.DEBUG {
+  @apply border-dashed border-red-500;
+}
+/* #endregion */
+
+/* #region Keyframes */
+@keyframes pixel-on {
+  0% {
+    opacity: 0.15;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.15;
+  }
+}
+@keyframes shimmer-text {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-loader-anim] {
+    animation: none !important;
+  }
+}
+/* #endregion */

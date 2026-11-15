@@ -1,0 +1,100 @@
+---
+title: Colors
+description: Color palette and theming system
+icon: color-palette
+---
+
+Our color system is built around semantic intent, not visual abundance. Instead of exposing large raw palettes, it defines a small set of color roles that cover most interface needs. Most colors are derived automatically from a limited number of base values.
+
+## How to use
+
+The complete theme definition lives in `theme.css`. Once imported, the theme switches between light and dark mode based on the `dark` class or the `data-theme="dark"` attribute on a parent element.
+
+```css
+@import 'tailwindcss';
+@import './theme.css';
+```
+
+Every fill has a matching foreground. Pair them instead of picking text colors by hand, and contrast holds in both themes.
+
+```jsx
+<button className='bg-brand text-brand-foreground hover:bg-brand-hover'>Save changes</button>
+```
+
+### Primitive
+
+Primitive colors are mode-agnostic values used as foundations for semantic color tokens. They do not change between light and dark themes.
+
+<ColorTokens group='primitive' single />
+
+### Default (neutrals)
+
+Default colors form the neutral backbone of the system. They are used for most non-emphasized UI elements.
+
+<ColorTokens group='neutral' />
+
+### Background
+
+Background colors define the base canvas of the interface. They establish overall contrast and mood while staying visually quiet.
+
+<ColorTokens group='background' />
+
+### Foreground
+
+Foreground colors are used for primary content such as text and icons. They are optimized for readability and accessibility and adapt automatically to background and surface contexts. Foreground colors should never be hard-coded at the component level.
+
+<ColorTokens group='foreground' />
+
+### Brand
+
+The primary brand or product identity. It is used to draw attention to key actions, highlights, and moments of emphasis. Use it intentionally and sparingly: overuse reduces its impact and can harm visual hierarchy. Components derive hover, subtle backgrounds, and focus states from the base color automatically.
+
+<ColorTokens group='brand' />
+
+### Success
+
+Success colors communicate positive outcomes, confirmations, and completed states. They are typically used in feedback components, status indicators, and validation states.
+
+<ColorTokens group='success' />
+
+### Warning
+
+Warning colors indicate caution, risk, or actions that require attention but are not destructive. They are commonly used for alerts, messages, and transitional states where the user should pause or review information.
+
+<ColorTokens group='warning' />
+
+### Danger
+
+Danger colors represent destructive, irreversible, or critical actions and states. They should be immediately recognizable and used consistently for errors, destructive buttons, and critical alerts.
+
+<ColorTokens group='danger' />
+
+### Info
+
+Info colors communicate neutral informational states, guidance, and non-critical messages. They are typically used for tips, helpers, and system notices that do not require urgent attention.
+
+<ColorTokens group='info' />
+
+### Form field
+
+Form field colors are specialized tokens used for inputs, controls, and interactive fields. They account for multiple states such as default, focus, and hover. Isolating them ensures form elements have a distinct visual language from buttons and the rest of the UI.
+
+<ColorTokens group='field' />
+
+### Surface
+
+Surface colors sit on top of backgrounds and are used for containers such as cards, panels, modals, and dropdowns. Surfaces create visual separation and hierarchy through elevation, contrast, and layering rather than strong color shifts.
+
+<ColorTokens group='surface' />
+
+### Separator
+
+Separator colors are used for dividing lines, hairlines, and subtle boundaries between sections or list items. They're intentionally low-contrast so they organize content without competing with it.
+
+<ColorTokens group='separator' />
+
+### Other
+
+Other colors serve specific utility roles across the interface. They exist to structure content and guide the eye without adding noise.
+
+<ColorTokens group='other' />

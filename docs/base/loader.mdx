@@ -1,0 +1,41 @@
+---
+title: Loader
+description: Pixel-grid loader with shimmer and elapsed time.
+---
+
+import { story } from '@/components/stories/loader.story'
+
+A pixel-grid loader for long-running work (AI responses, exports, builds).
+It pairs an animated grid with a shimmering label and a live elapsed timer.
+
+- The timer is derived from the clock, not a counter, so it never drifts when the tab is busy.
+- It shows `12.3s` under a minute and `1m 12.3s` after.
+- Requires the `pixel-on` and `shimmer-text` keyframes in `theme.css`.
+
+<story.WithControl />
+
+### How to use
+
+- Operations that take more than a few seconds and where elapsed time is useful feedback.
+- Streaming or background tasks with no known progress percentage.
+
+```tsx
+import { Loader } from '@/core/ui/loader'
+;<Loader label='Generating' variant='drive' />
+```
+
+### Props
+
+| Prop        | Type                           | Default      | Description                                             |
+| ----------- | ------------------------------ | ------------ | ------------------------------------------------------- |
+| `label`     | `string`                       | `'churning'` | Text shown next to the grid, capitalized and shimmered. |
+| `variant`   | `'drive' \| 'dots' \| 'orbit'` | `'drive'`    | Grid animation pattern.                                 |
+| `className` | `string`                       | none         | Merged onto the root element.                           |
+
+### Variants
+
+| Variant | Description                                                                     |
+| ------- | ------------------------------------------------------------------------------- |
+| `drive` | Square cells, chevron wavefront driving right. Two fronts are always in flight. |
+| `dots`  | Same wavefront with circular cells.                                             |
+| `orbit` | A comet lapping the grid perimeter.                                             |
