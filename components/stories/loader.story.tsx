@@ -1,5 +1,4 @@
 import { defineStory } from '@/lib/story'
-
 import { Loader } from '@/core/ui/loader'
 
 export const story = defineStory({

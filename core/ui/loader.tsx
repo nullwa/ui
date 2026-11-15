@@ -1,7 +1,6 @@
 'use client'
 
 import { type FC, useEffect, useState } from 'react'
-
 import { tm } from '@/core/utils/tw-merge'
 
 /**
@@ -14,13 +13,12 @@ import { tm } from '@/core/utils/tw-merge'
  *
  * Needs the `pixel-on` and `shimmer-text` keyframes in theme.css.
  */
-
 const Loader: FC<Props> = ({ label = 'churning', variant = 'drive', className }) => {
   const elapsed = useElapsed()
   const { delays, dur, round } = PATTERNS[variant]
 
   return (
-    <div role='status' className={tm('flex w-fit items-center gap-2.5', className)}>
+    <div data-slot='loader' role='status' className={tm('flex w-fit items-center gap-2.5', className)}>
       <LoaderGrid delays={delays} dur={dur} round={round} />
       <span
         data-loader-anim
@@ -38,7 +36,7 @@ const Loader: FC<Props> = ({ label = 'churning', variant = 'drive', className })
 Loader.displayName = 'Loader'
 export { Loader }
 
-// #region Types
+// #region types
 
 /**
  * drive  — square cells, chevron wavefront driving right;
@@ -56,7 +54,7 @@ type Props = {
 }
 // #endregion
 
-// #region Functions
+// #region functions
 const LoaderGrid = ({ delays, dur, round }: { delays: (number | null)[]; dur: number; round: boolean }) => {
   return (
     <span aria-hidden className='grid shrink-0 grid-cols-[repeat(3,4px)] gap-[1.5px]'>
@@ -91,7 +89,7 @@ const useElapsed = () => {
 }
 // #endregion
 
-// #region Consts
+// #region consts
 const SHIMMER = 'linear-gradient(90deg, var(--color-foreground-muted) 35%, var(--color-foreground-primary) 50%, var(--color-foreground-muted) 65%)'
 
 const chevron = Array.from({ length: 9 }, (_, i) => {
