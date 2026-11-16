@@ -24,7 +24,7 @@ const Avatar: FC<Props> = ({ src, fallback, alt, size, radius, className, ...res
     </div>
   )
 }
-Avatar.displayName = 'Avatar'
+Avatar.displayName = 'avatar'
 export { Avatar }
 
 // #region types

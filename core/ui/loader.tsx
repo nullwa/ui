@@ -33,7 +33,7 @@ const Loader: FC<Props> = ({ label = 'churning', variant = 'drive', className })
     </div>
   )
 }
-Loader.displayName = 'Loader'
+Loader.displayName = 'loader'
 export { Loader }
 
 // #region types
